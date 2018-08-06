@@ -1,0 +1,31 @@
+{% extends 'templates/app.twig'%}
+
+{% block content %}
+    <div id='newsFeed'>
+    <div class='card-group'>
+    {% if news.list %}
+      {% set count = 6 %}
+      {% if news.list | length < 6 %}
+        {% set count = news.list | length - 1 %}
+      {% endif %}
+      {% set counter = 0 %}
+      {% for i in 0.. count %}
+        <div style='min-width: 30%; max-width:30%; margin-bottom: 2rem;' class="card">
+        <a style='display: block;' href='/news/preview/{{news.list[i]['id']}}'>
+    <img class="card-img-top" src="{{base_url}}/img/sample.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{news.list[i]['title']}}</h5>
+      <p class="card-text">{{news.list[i]['content']}}</p>
+      <p class="card-text"><small class="text-muted">Last updated {{news.list[i]['created_at']}}</small></p>
+    </div>
+    </a>
+  </div>
+  
+      {% endfor %}
+    {% endif %}
+    </div>
+    <!-- News Feed -->
+    
+ 
+    <!-- NewsFeed End -->  
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'templates/dashboard.twig' %}
+
+{% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">MyComments</h1>
+    </div>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Article</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Added</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if comments %}
+  {% set counter = 0 %}
+    {% for comment in comments %}
+        <tr>
+      <th scope="row">{{ comment['id'] }}</th>
+      <td>{{ titles[counter] }}</td>
+      <td>{{ comment['comment']}}</td>
+      <td>{{ comment['created_at']}}</td>
+      <td><a style='margin-right: 1rem;' href='/dashboard/comments/editcomment/{{comment['id']}}' class='btn btn-warning'>Edit</a><a href='/dashboard/comments/delete/{{comment['id']}}/{{auth.user['id']}}' class='btn btn-danger'>Delete</a></td>
+    </tr>
+    {% set counter = counter + 1 %}
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+{% endblock %}

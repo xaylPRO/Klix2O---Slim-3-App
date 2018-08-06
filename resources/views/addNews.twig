@@ -1,0 +1,32 @@
+{% extends "templates/dashboard.twig" %}
+
+
+{% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Add news</h1>
+    </div>
+    <form action='/dashboard/news/add' method='post'>
+    <input type='hidden' name='writerId' value='{{auth.user['id']}}' >
+
+    <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Title</span>
+  </div>
+  <input type="text" class="form-control" name='title'  aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<textarea name='content' id='editor'></textarea>
+
+<br><br>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Category</span>
+  </div>
+  <input type="text" name='category' class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+    <br><br>
+    <button style='float: right;' class='btn btn-success' type='submit'>Save changes</button>
+    <br><br>
+    </form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'templates/dashboard.twig' %}
+
+{% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Edit Comment id: {{id}}</h1>
+    </div>
+    <form action='/dashboard/comments/editcomment' method='post'>
+    <div class="input-group">
+    <div class="input-group-prepend">
+    <span class="input-group-text">Change to:</span>
+    <input type='hidden' name='id' value='{{ id }}'>
+    </div>
+    <textarea name='comment' class="form-control" aria-label="With textarea" value='{{prev_value['comment']}}'>{{prev_value['comment']}}</textarea>
+    </div>
+    <br><br>
+    <button style='float: right;' class='btn btn-success' type='submit'>Save changes</button>
+    <br><br>
+    </form>
+{% endblock %}

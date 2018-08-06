@@ -1,0 +1,42 @@
+{% extends 'templates/app.twig'%}
+
+{% block content %}
+<div id='newsFeed'>
+    {% if categories %}
+    <div style='float: right;' class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Display by category
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        {% for category in categories %}
+    <a class="dropdown-item" href="/news/category/{{category['category']}}">{{ category['category'] }}</a>
+        {% endfor %}
+        </div>
+</div>
+<br><br>
+    {% endif %}
+    <div class="card-group">
+    {% set counter = 0 %}
+    {% for n in news %}
+    {% if counter < 3 %}
+        <div class="card">
+        <a href='/news/preview/{{n['id']}}'>
+        <img class="card-img-top" src="{{base_url()}}/img/sample.jpg" alt="Card image cap">
+        <div class="card-body">
+      <h5 class="card-title">{{n['title']}}</h5>
+      <p class="card-text">{{n['content']}}</p>
+      <p class="card-text"><small class="text-muted">Last updated {{n['updated_at']}}</small></p>
+        </div>
+                </a>
+        </div>
+        {% set counter = counter + 1 %}
+    {% else %}
+    </div>
+    <br><br>
+    <div class="card-group">
+    {% set counter = 0 %}
+    {% endif %}
+    {% endfor %}
+    </div>
+{% endblock %}

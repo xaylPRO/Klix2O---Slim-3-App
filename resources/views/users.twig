@@ -1,0 +1,33 @@
+{% extends 'templates/dashboard.twig' %}
+
+{% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Manage users</h1>
+    </div>
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if users %}
+  {% for user in users %}
+    <tr>
+      <th scope="row">{{user['id']}}</th>
+      <td>{{user['username']}}</td>
+      <td>{{user['email']}}</td>
+      <td>{{user['status']}}</td>
+      <td><a style='margin-right: 1rem;' href='/dashboard/users/edit/{{user['id']}}' class='btn btn-warning'>Edit</a><a href='/dashboard/users/delete/{{user['id']}}' class='btn btn-danger'>Delete</a></td>
+    </tr>
+    {% endfor %}
+  {% endif %}
+        
+</table>
+
+{% endblock %}

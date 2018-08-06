@@ -1,0 +1,32 @@
+{% extends 'templates/dashboard.twig' %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Articles List</h1>
+        <a href='/dashboard/news/add' class='btn btn-success'>Add news</a>
+    </div>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Added</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if news %}
+    {% for n in news %}
+        <tr>
+      <th scope="row">{{ n['id'] }}</th>
+      <td>{{ n['title'] }}</td>
+      <td>{{ n['writerId']}}</td>
+      <td>{{ n['created_at']}}</td>
+      <td><a style='margin-right: 1rem;' href='/dashboard/news/edit/{{n['id']}}' class='btn btn-warning'>Edit</a><a href='/dashboard/news/delete/{{n['id']}}' class='btn btn-danger'>Delete</a></td>
+    </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+{% endblock %}
